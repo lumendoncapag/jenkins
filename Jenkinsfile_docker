@@ -20,8 +20,10 @@ pipeline {
       }
     }
      stage('Push image') {
-        withDockerRegistry([ credentialsId: "dockerhubaccount", url: "" ]) {
+        steps{
+        withDockerRegistry([ credentialsId: "dockerhubaccount", url: "https://hub.docker.com/u/lucasf66" ]) {
         dockerImage.push()
+        }
         }
     }    
   }
