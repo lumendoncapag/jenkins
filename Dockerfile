@@ -1,9 +1,9 @@
-FROM python:3
+FROM nginx:latest
 
-WORKDIR /usr/src/app
+WORKDIR /usr/share/nginx/html
 
-COPY .  ./
+RUN 'pwd'
 
-RUN apt update && apt upgrade
+COPY index.html  ./
 
-CMD [ "python", "./script.py" ]
+RUN 'ls'
