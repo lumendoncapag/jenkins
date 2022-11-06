@@ -15,6 +15,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
+          sh 'apt install docker -y'
           sh 'ls && docker build -t lumendonca/jenkins_py:3.0 .'
         }
       }
