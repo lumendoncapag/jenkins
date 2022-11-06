@@ -15,25 +15,16 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          sh 'ls && docker build -t lumendonca/jenkins_py:3.0 .'
+          dockerImage =  docker.build('lumendoncapag/jenkins')
         }
       }
-    }
-     stage('Push image') {
-        steps{
-            script{
-                    docker.withDockerRegistry([ credentialsId: "dockerhubaccount", url: "https://hub.docker.com/u/lucasf66" ]) {
-                    dockerImage.push()
-            }
-        }
-        }
     }
     stage('Run'){
       steps{
         script{
-          sh 'docker run -p 9091:80 lumendonca/jenkins_py'
+          dockerImage.run('-p 4040:80')
         }
       }
-    }    
+    }
   }
 }
